@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NebulaCheats App</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+  :root {
+    --purple-dark: #12002b;
+    --purple-mid: #4b0082;
+    --purple-light: #9c27b0;
+    --neon-glow: #c462ff;
+    --text-light: #ddd6f7;
+    --bg-gradient-start: #240046;
+    --bg-gradient-end: #10002b;
+    --modal-bg: rgba(18, 0, 43, 0.95);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    background: radial-gradient(circle at center, var(--bg-gradient-start), var(--bg-gradient-end));
+    overflow-x: hidden;
+    user-select: none;
+  }
+
+  /* Nebula starfield background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://cdn.pixabay.com/photo/2016/11/14/03/16/starry-sky-1822800_1280.jpg') no-repeat center center / cover;
+    opacity: 0.15;
+    z-index: -2;
+    animation: starTwinkle 30s linear infinite alternate;
+  }
+
+  @keyframes starTwinkle {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.1; }
+  }
+
+  /* Title header */
+  header {
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 3.4rem;
+    color: var(--neon-glow);
+    text-shadow:
+      0 0 6px #a25eff,
+      0 0 12px #b56eff,
+      0 0 20px #c462ff,
+      0 0 28px #d077ff,
+      0 0 38px #e28fff,
+      0 0 48px #f2a7ff;
+    letter-spacing: 0.1em;
+    user-select: none;
+  }
+  header small {
+    display: block;
+    font-size: 1rem;
+    color: #b494ff;
+    margin-top: 0.25rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    background: linear-gradient(90deg, #3a006e 0%, #2e004d 100%);
+    box-shadow: 0 0 18px #5700a5;
+    user-select: none;
+  }
+  .tabBtn {
+    background: transparent;
+    border: 2px solid var(--purple-light);
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    color: var(--purple-light);
+    cursor: pointer;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      box-shadow 0.4s ease,
+      transform 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .tabBtn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #a462ff, #d077ff, #c462ff, #f2a7ff);
+    animation: shine 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    border-radius: 12px;
+  }
+  .tabBtn:hover::before {
+    opacity: 0.3;
+  }
+  @keyframes shine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .tabBtn.active,
+  .tabBtn:focus {
+    background-color: var(--purple-light);
+    color: var(--purple-dark);
+    box-shadow:
+      0 0 8px #b26eff,
+      0 0 20px #c462ff;
+    transform: scale(1.12);
+    outline: none;
+  }
+
+  /* Main content */
+  main {
+    max-width: 900px;
+    margin: 2rem auto 3rem;
+    padding: 0 1rem;
+    min-height: 480px;
+  }
+
+  main > section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+  main > section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Section headings */
+  main section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 0.6rem;
+    color: var(--neon-glow);
+    text-shadow: 0 0 8px #b46eff;
+    user-select: none;
+  }
+
+  main section p, main section ul {
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: var(--text-light);
+  }
+
+  main section ul {
+    list-style: inside disc;
+  }
+
+  /* Buttons */
+  .btn {
+    background: var(--purple-light);
+    color: var(--purple-dark);
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.4s ease,
+      transform 0.2s ease;
+    box-shadow:
+      0 0 6px #b56eff,
+      0 0 12px #c462ff;
+  }
+  .btn:hover {
+    background-color: #d77aff;
+    box-shadow:
+      0 0 16px #e28fff,
+      0 0 26px #f2a7ff;
+    transform: scale(1.1);
+  }
+  .btn:active {
+    transform: scale(0.95);
+  }
+  .btn.small {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Modal */
+  #modalOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--modal-bg);
+    backdrop-filter: blur(7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+    z-index: 9999;
+  }
+  #modalOverlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #modalContent {
+    background: linear-gradient(145deg, #3a006e, #4b0082);
+    border-radius: 18px;
+    padding: 2rem 3rem;
+    width: 320px;
+    box-shadow:
+      0 0 20px #b26eff,
+      0 0 38px #d077ff;
+    color: var(--text-light);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    transform: translateY(-30px);
+    opacity: 0;
+    transition:
+      transform 0.45s cubic-bezier(0.2, 1, 0.22, 1),
+      opacity 0.45s cubic-bezier(0.2, 1, 0.22, 1);
+  }
+  #modalOverlay.active #modalContent {
+        opacity: 1;
+    transform: translateY(0);
+  }
+
+  #modalContent h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--neon-glow);
+    text-shadow: 0 0 10px #c462ff;
+  }
+
+  #modalContent .modalBtn {
+    background: transparent;
+    border: 2px solid var(--purple-light);
+    color: var(--purple-light);
+    padding: 0.6rem 1.4rem;
+    border-radius: 12px;
+    margin: 0.7rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  #modalContent .modalBtn:hover {
+    background-color: var(--purple-light);
+    color: var(--purple-dark);
+    box-shadow:
+      0 0 12px #c462ff,
+      0 0 22px #e28fff;
+  }
+
+  #modalClose {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--purple-light);
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  #modalClose:hover {
+    color: var(--neon-glow);
+  }
+
+  /* Scrollbar for main content */
+  main {
+    overflow-y: auto;
+    max-height: 65vh;
+    padding-right: 0.7rem;
+  }
+  main::-webkit-scrollbar {
+    width: 7px;
+  }
+  main::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  main::-webkit-scrollbar-thumb {
+    background: var(--purple-light);
+    border-radius: 12px;
+  }
+
+  /* Links inside content */
+  main a {
+    color: var(--neon-glow);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  main a:hover {
+    color: #f2a7ff;
+    text-decoration: underline;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.2rem 1rem;
+    color: #8c70ffcc;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  NebulaCheats App
+  <small>Beyond God Level Custom Experience</small>
+</header>
+
+<nav>
+  <button class="tabBtn active" data-tab="info">Information</button>
+  <button class="tabBtn" data-tab="sideloading">Sideloading</button>
+  <button class="tabBtn" data-tab="downloads">Downloads</button>
+  <button class="tabBtn" data-tab="settings">Settings</button>
+</nav>
+
+<main>
+  <section id="info" class="active" aria-label="Information">
+    <h2>Welcome to NebulaCheats</h2>
+    <p>Discover everything about digital certificates, their importance, and how they secure your devices and connections.</p>
+    <ul>
+      <li><strong>Certificates:</strong> Digital certificates authenticate identities and secure communication.</li>
+      <li><strong>Trust:</strong> Certificates are issued by trusted Certificate Authorities (CA).</li>
+      <li><strong>Revocation:</strong> Certificates can be revoked when compromised.</li>
+      <li><strong>Use cases:</strong> HTTPS, app signing, VPNs, email encryption, etc.</li>
+    </ul>
+    <p>Learn how to manage certificates safely and avoid revoked or fake certificates that can harm your device's security.</p>
+  </section>
+
+  <section id="sideloading" aria-label="Sideloading Information">
+    <h2>What is Sideloading?</h2>
+    <p>Sideloading allows you to install applications or profiles on your device outside official app stores.</p>
+    <ul>
+      <li>It grants you freedom beyond app store restrictions.</li>
+      <li>Can be risky if installing untrusted software.</li>
+      <li>Common in iOS and Android customization communities.</li>
+      <li>Requires special configuration profiles or APKs.</li>
+    </ul>
+    <p>Always verify the source of sideloaded content to protect your device.</p>
+  </section>
+
+  <section id="downloads" aria-label="Downloads Section">
+    <h2>Downloads</h2>
+    <p>Quick access to useful profiles, certificates, and tools:</p>
+    <div style="display:flex; flex-direction: column; gap: 12px; max-width: 300px;">
+      <button class="btn" onclick="window.open('https://khoindvn.io.vn/', '_blank')">ESign</button>
+      <button class="btn" onclick="window.open('https://raw.githubusercontent.com/khoindvnDNS/iOS/main/DNS/khoindns.mobileconfig', '_blank')">DNS Manager</button>
+      <button class="btn" id="openCertsBtn">Certificates</button>
+    </div>
+  </section>
+
+  <section id="settings" aria-label="Settings Section">
+    <h2>Settings</h2>
+    <p>Customize your NebulaCheats experience:</p>
+    <ul>
+      <li><label><input type="checkbox" id="darkModeToggle" /> Enable Dark Mode</label></li>
+      <li><label><input type="checkbox" id="animationsToggle" checked /> Enable Animations</label></li>
+      <li><label><input type="checkbox" id="particleToggle" checked /> Enable Background Particles</label></li>
+      <li><label><input type="checkbox" id="glowToggle" checked /> Enable Neon Glow</label></li>
+    </ul>
+    <p>Settings are saved in your browser automatically.</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 NebulaCheats. Crafted with cosmic care and infinite love. 🚀✨
+</footer>
+
+<!-- Modal -->
+<div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+  <div id="modalContent">
+    <span id="modalClose" aria-label="Close modal" role="button" tabindex="0">&times;</span>
+    <h3 id="modalTitle">Which Download?</h3>
+    <button class="modalBtn" data-url="https://www.mediafire.com/file/coqlwp6uabgjdxa/11+Revoked+Certs.zip/file">11 Certs</button>
+    <button class="modalBtn" data-url="https://www.mediafire.com/file/7711f0afzmqjvw0/Esign-Certs-1.zip/file">ESign Certs</button>
+  </div>
+</div>
+
+<script>
+  // Tab switching with smooth fade and slide
+  const tabs = document.querySelectorAll('.tabBtn');
+  const sections = document.querySelectorAll('main > section');
+
+  function setActiveTab(tabName) {
+    sections.forEach(s => {
+      if (s.id === tabName) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+    tabs.forEach(t => {
+      if (t.dataset.tab === tabName) {
+        t.classList.add('active');
+        t.setAttribute('aria-selected', 'true');
+        t.focus();
+      } else {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      }
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      setActiveTab(tab.dataset.tab);
+    });
+  });
+
+  // Modal logic for Certificates button
+  const modal = document.getElementById('modalOverlay');
+  const openCertsBtn = document.getElementById('openCertsBtn');
+  const modalClose = document.getElementById('modalClose');
+  const modalBtns = modal.querySelectorAll('.modalBtn');
+
+  openCertsBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    modal.focus();
+  });
+
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modalClose.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      modal.classList.remove('active');
+    }
+  });
+
+  modalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.open(btn.dataset.url, '_blank');
+    });
+  });
+
+  // Settings with localStorage persistence
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const animationsToggle = document.getElementById('animationsToggle');
+  const particleToggle = document.getElementById('particleToggle');
+  const glowToggle = document.getElementById('glowToggle');
+
+  function applySettings() {
+    if (darkModeToggle.checked) {
+      document.body.style.background = '#10002b';
+    } else {
+            document.body.style.background = 'radial-gradient(circle at center, var(--bg-gradient-start), var(--bg-gradient-end))';
+    }
+
+    if (animationsToggle.checked) {
+      document.documentElement.style.setProperty('--animation-speed', '1s');
+    } else {
+      document.documentElement.style.setProperty('--animation-speed', '0s');
+    }
+
+    // For demonstration, toggle particle and glow effects (you can expand this)
+    if (particleToggle.checked) {
+      // enable particles (if implemented)
+    } else {
+      // disable particles
+    }
+
+    if (glowToggle.checked) {
+      document.body.classList.add('glow');
+    } else {
+      document.body.classList.remove('glow');
+    }
+  }
+
+  // Load settings from localStorage
+  function loadSettings() {
+    darkModeToggle.checked = JSON.parse(localStorage.getItem('darkMode')) || false;
+    animationsToggle.checked = JSON.parse(localStorage.getItem('animations')) ?? true;
+    particleToggle.checked = JSON.parse(localStorage.getItem('particles')) ?? true;
+    glowToggle.checked = JSON.parse(localStorage.getItem('glow')) ?? true;
+    applySettings();
+  }
+
+  // Save settings on change
+  [darkModeToggle, animationsToggle, particleToggle, glowToggle].forEach(toggle => {
+    toggle.addEventListener('change', () => {
+      localStorage.setItem('darkMode', darkModeToggle.checked);
+      localStorage.setItem('animations', animationsToggle.checked);
+      localStorage.setItem('particles', particleToggle.checked);
+      localStorage.setItem('glow', glowToggle.checked);
+      applySettings();
+    });
+  });
+
+  loadSettings();
+</script>
+
+</body>
+</html>
